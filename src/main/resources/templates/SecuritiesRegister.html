@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8"></meta>
+	<title>Securities Register</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img alt="MyLogo" src="/images/logo.png" />
+                </a>
+            </div>
+        </div>
+    </nav>
+    <form class="form-horizontal">
+    	<div class="panel panel-default">
+    		<div class="panel-heading">
+    			<h1 class="panel-title">Securities Register</h1>
+    		</div>
+    		<div class="panel-body">
+				<div class="form-group">
+					<label for="description" class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-4"> 
+						<input type="text" class="form-control" id="description"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="duedate" class="col-sm-2 control-label">Due date</label>
+					<div class="col-sm-2">  
+						<input type="text" class="form-control"	id="duedate" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="value" class="col-sm-2 control-label">Value</label>
+					<div class="col-sm-2">   
+						<input type="text" class="form-control" id="value"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="status" class="col-sm-2 control-label">Status</label>
+					<div class="col-sm-2">
+						<select class="form-control">
+							<option>Pending</option>
+							<option>Received</option>
+                    	</select>
+                    </div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+			</div>
+    		
+    	</div>
+    </form>
+
+<script src="/js/boostrap.min.js"></script>
+</body>
+</html>
