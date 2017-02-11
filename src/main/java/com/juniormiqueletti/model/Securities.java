@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
 @Entity
 public class Securities {
 
@@ -20,9 +23,11 @@ public class Securities {
 	
 	private String description;
 	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
-	private Date duDate;
+	private Date dueDate;
 	
+	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal value;
 	
 	@Enumerated(EnumType.STRING)
@@ -44,12 +49,12 @@ public class Securities {
 		this.description = description;
 	}
 
-	public Date getDuDate() {
-		return duDate;
+	public Date getDueDate() {
+		return dueDate;
 	}
 
-	public void setDuDate(Date duDate) {
-		this.duDate = duDate;
+	public void setDueDate(Date duDate) {
+		this.dueDate = duDate;
 	}
 
 	public BigDecimal getValue() {
