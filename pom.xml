@@ -6,7 +6,7 @@
 	<groupId>com.juniormiqueletti</groupId>
 	<artifactId>securities</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>securities</name>
 	<description>Bank securities</description>
