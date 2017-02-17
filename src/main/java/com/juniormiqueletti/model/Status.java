@@ -1,16 +1,16 @@
 package com.juniormiqueletti.model;
 
 public enum Status {
-	PENDING("Pending"), RECEIVED("Received");
+	PENDING("Pending"), RECEIVED("Received"), CANCELED("Canceled");
 
-	private String decription;
+	private String description;
 
 	Status(String description) {
-		this.decription = description;
+		this.description = description;
 	}
 
-	public String getDecription() {
-		return decription;
+	public String getDescription() {
+		return description;
 	}
 
 }
