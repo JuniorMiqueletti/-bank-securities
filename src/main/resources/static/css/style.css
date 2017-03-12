@@ -11,3 +11,13 @@
 	margin-left: 10px;
 	margin-right: 10px;
 }
+
+.jm-title-panel {
+	float: left;
+	padding-top: 2px;
+}
+
+.jm-link-panel {
+	float: right;
+	padding: 0px;
+}

@@ -1,77 +1,71 @@
 <!DOCTYPE html>
-<html th:lang="en" 
-	  xmlns:th="http://www.thymeleaf.org" 
-	  xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="DefaultLayout">
 <head>
-	<meta charset="UTF-8"></meta>
 	<title>Securities Register</title>
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/css/style.css"/>
 </head>
-<body>
 
-	<nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img alt="MyLogo" src="/images/logo.png" />
-                </a>
-            </div>
-        </div>
-    </nav>
-    
-    <form class="form-horizontal" method="post" action="/securities">
-		<div class="alert alert-success" th:if="${!#strings.isEmpty(message)}">
-    		<span th:text="${message}">Successfully saved!!!</span>
-    	</div>
-    
-    	<div class="panel panel-default">
-    		<div class="panel-heading">
-    			<h1 class="panel-title">Securities Register</h1>
-    		</div>
-    		<div class="panel-body">
-				<div class="form-group">
-					<label for="description" class="col-sm-2 control-label">Description</label>
-					<div class="col-sm-4"> 
-						<input type="text" class="form-control" id="description"
-							name="description"/>
+	<section layout:fragment="content">
+		
+	    <form class="form-horizontal" method="post" action="/securities">
+			<div class="alert alert-success" th:if="${!#strings.isEmpty(message)}">
+	    		<span th:text="${message}">Successfully saved!!!</span>
+	    	</div>
+	    
+	    	<div class="panel panel-default">
+	    		<div class="panel-heading">
+	    			<div class="clearfix">
+			   			<h1 class="panel-title jm-title-panel">Securities Register</h1>
+			   			<a  class="btn btn-link jm-link-panel" href="/securities">Back to Securities</a>
+			   		</div>
+	    		</div>
+	    		
+	    		
+	    		
+	    		
+	    		<div class="panel-body">
+					<div class="form-group">
+						<label for="description" class="col-sm-2 control-label">Description</label>
+						<div class="col-sm-4"> 
+							<input type="text" class="form-control" id="description"
+								name="description"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="duedate" class="col-sm-2 control-label">Due date</label>
+						<div class="col-sm-2">  
+							<input type="text" class="form-control"	id="dueDate" 
+								name="dueDate"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="value" class="col-sm-2 control-label">Value</label>
+						<div class="col-sm-2">   
+							<input type="text" class="form-control" id="value"
+								name="value"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="status" class="col-sm-2 control-label">Status</label>
+						<div class="col-sm-2">
+							<select class="form-control" name="Status">
+								<option th:each="status : ${allStatus}" 
+										th:value="${status}"
+										th:text="${status.description}"></option>
+	                    	</select>
+	                    </div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-primary">Save</button>
+						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="duedate" class="col-sm-2 control-label">Due date</label>
-					<div class="col-sm-2">  
-						<input type="text" class="form-control"	id="dueDate" 
-							name="dueDate"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="value" class="col-sm-2 control-label">Value</label>
-					<div class="col-sm-2">   
-						<input type="text" class="form-control" id="value"
-							name="value"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="status" class="col-sm-2 control-label">Status</label>
-					<div class="col-sm-2">
-						<select class="form-control" name="Status">
-							<option th:each="status : ${allStatus}" 
-									th:value="${status}"
-									th:text="${status.description}"></option>
-                    	</select>
-                    </div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary">Save</button>
-					</div>
-				</div>
-			</div>
-    		
-    	</div>
-    </form>
+	    		
+	    	</div>
+	    </form>
 
-<script src="/js/jquery-3.1.1.min.js"/>
-<script src="/js/bootstrap.min.js"/>
-</body>
+	</section>
 </html>
