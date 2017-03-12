@@ -39,6 +39,11 @@ public class SecuritiesController {
 		return mv;
 	}
 	
+	@RequestMapping
+	public ModelAndView search(){
+		return new ModelAndView("SecuritiesSearch");
+	}
+	
 	@ModelAttribute(name = "allStatus")
 	public List<Status> status(){
 		return Arrays.asList(Status.values());
