@@ -97,5 +97,9 @@ public class Securities {
 			return false;
 		return true;
 	}
+	
+	public boolean isPending(){
+		return this.status.equals(Status.PENDING);
+	}
 
 }

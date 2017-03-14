@@ -41,11 +41,17 @@ public class SecuritiesController {
 	
 	@RequestMapping
 	public ModelAndView search(){
-		return new ModelAndView("SecuritiesSearch");
+		List<Securities> allSecurities = securitiesRespository.findAll();
+		
+		ModelAndView modelAndView = new ModelAndView("SecuritiesSearch");
+		modelAndView.addObject("allSecurities", allSecurities);
+		
+		return modelAndView;
 	}
 	
 	@ModelAttribute(name = "allStatus")
 	public List<Status> status(){
 		return Arrays.asList(Status.values());
 	}
+	
 }
