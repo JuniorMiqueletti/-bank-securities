@@ -8,10 +8,10 @@
 </head>
 
 	<section layout:fragment="content">
-		
-	    <form class="form-horizontal" method="post" action="/securities">
-			<div class="alert alert-success" th:if="${!#strings.isEmpty(message)}">
-	    		<span th:text="${message}">Successfully saved!!!</span>
+
+	    <form class="form-horizontal" method="post" action="/securities" th:object="${securities}">
+	    
+	    	<div layout:include="Message">    		
 	    	</div>
 	    
 	    	<div class="panel panel-default">
@@ -21,28 +21,25 @@
 			   			<a  class="btn btn-link jm-link-panel" href="/securities">Back to Securities</a>
 			   		</div>
 	    		</div>
-	    		
-	    		
-	    		
-	    		
+
 	    		<div class="panel-body">
-					<div class="form-group">
+					<div class="form-group" th:classappend="${#fields.hasErrors('description')} ? 'has-error'">
 						<label for="description" class="col-sm-2 control-label">Description</label>
-						<div class="col-sm-4"> 
+						<div class="col-sm-4">
 							<input type="text" class="form-control" id="description"
 								name="description"/>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" th:classappend="${#fields.hasErrors('dueDate')} ? 'has-error'">
 						<label for="duedate" class="col-sm-2 control-label">Due date</label>
-						<div class="col-sm-2">  
-							<input type="text" class="form-control"	id="dueDate" 
+						<div class="col-sm-2">
+							<input type="text" class="form-control"	id="dueDate"
 								name="dueDate"/>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" th:classappend="${#fields.hasErrors('value')} ? 'has-error'">
 						<label for="value" class="col-sm-2 control-label">Value</label>
-						<div class="col-sm-2">   
+						<div class="col-sm-2">
 							<input type="text" class="form-control" id="value"
 								name="value"/>
 						</div>
@@ -51,7 +48,7 @@
 						<label for="status" class="col-sm-2 control-label">Status</label>
 						<div class="col-sm-2">
 							<select class="form-control" name="Status">
-								<option th:each="status : ${allStatus}" 
+								<option th:each="status : ${allStatus}"
 										th:value="${status}"
 										th:text="${status.description}"></option>
 	                    	</select>
@@ -63,7 +60,7 @@
 						</div>
 					</div>
 				</div>
-	    		
+
 	    	</div>
 	    </form>
 

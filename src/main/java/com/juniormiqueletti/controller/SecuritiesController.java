@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,14 +27,19 @@ public class SecuritiesController {
 	@RequestMapping("/new")
 	public ModelAndView newRegister(){
 		ModelAndView mv = new ModelAndView("SecuritiesRegister");
+		mv.addObject(new Securities());
 		return mv;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView save(Securities securities){
+	public ModelAndView save(@Validated Securities securities, Errors errors){
+		
+		ModelAndView mv = new ModelAndView("SecuritiesRegister");
+		if(errors.hasErrors()){
+			return mv;
+		}
 		
 		securitiesRespository.save(securities);
-		ModelAndView mv = new ModelAndView("SecuritiesRegister");
 		
 		mv.addObject("message","Successfully saved!!!");
 		

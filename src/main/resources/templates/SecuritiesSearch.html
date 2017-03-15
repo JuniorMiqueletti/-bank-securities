@@ -37,7 +37,8 @@
               <td class="text-right" th:text="|$ ${{sec.value}}|"></td>
               <td class="text-center">
                 <span class="label" th:text="${sec.status.description}"
-                	   							  th:classappend="${sec.pending ? 'label-danger' : 'label-success'}"></span>
+                	   							  th:classappend="${sec.pending ? 'label-danger' : 'label-success'}">
+                </span>
               </td>
               <td class="text-center"></td>
             </tr>
