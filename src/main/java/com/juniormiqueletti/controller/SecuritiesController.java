@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.juniormiqueletti.model.Securities;
 import com.juniormiqueletti.model.Status;
@@ -32,18 +33,17 @@ public class SecuritiesController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView save(@Validated Securities securities, Errors errors){
+	public String save(@Validated Securities securities, Errors errors, RedirectAttributes attributes){
 		
-		ModelAndView mv = new ModelAndView("SecuritiesRegister");
 		if(errors.hasErrors()){
-			return mv;
+			return "SecuritiesRegister";
 		}
 		
 		securitiesRespository.save(securities);
 		
-		mv.addObject("message","Successfully saved!!!");
+		attributes.addFlashAttribute("message","Successfully saved!!!");
 		
-		return mv;
+		return "redirect:/securities/new";
 	}
 	
 	@RequestMapping
