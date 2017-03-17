@@ -40,7 +40,11 @@
                 	   							  th:classappend="${sec.pending ? 'label-danger' : 'label-success'}">
                 </span>
               </td>
-              <td class="text-center"></td>
+              <td class="text-center">
+              	<a class="btn bnt-link btn-xs" th:href="@{/securities/{codigo}(codigo=${sec.codigo})}">
+              		<span class="glyphicon glyphicon-pencil"></span>
+              	</a>
+              </td>
             </tr>
             <tr>
               <td colspan="6" th:if="${#lists.isEmpty(allSecurities)}">No data found!</td>

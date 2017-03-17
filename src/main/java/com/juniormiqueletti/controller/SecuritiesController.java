@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,12 +23,13 @@ import com.juniormiqueletti.repository.SecuritiesRepository;
 @RequestMapping("/securities")
 public class SecuritiesController {
 
+	private static final String SECURITIES_REGISTER = "SecuritiesRegister";
 	@Autowired
 	private SecuritiesRepository securitiesRespository;
 	
 	@RequestMapping("/new")
 	public ModelAndView newRegister(){
-		ModelAndView mv = new ModelAndView("SecuritiesRegister");
+		ModelAndView mv = new ModelAndView(SECURITIES_REGISTER);
 		mv.addObject(new Securities());
 		return mv;
 	}
@@ -36,7 +38,7 @@ public class SecuritiesController {
 	public String save(@Validated Securities securities, Errors errors, RedirectAttributes attributes){
 		
 		if(errors.hasErrors()){
-			return "SecuritiesRegister";
+			return SECURITIES_REGISTER;
 		}
 		
 		securitiesRespository.save(securities);
@@ -54,6 +56,16 @@ public class SecuritiesController {
 		modelAndView.addObject("allSecurities", allSecurities);
 		
 		return modelAndView;
+	}
+	
+	@RequestMapping("{codigo}")
+	public ModelAndView edition(@PathVariable("codigo") Securities securities){
+		
+		ModelAndView modelAndView = new ModelAndView(SECURITIES_REGISTER);
+
+		modelAndView.addObject(securities);
+		return modelAndView;
+		
 	}
 	
 	@ModelAttribute(name = "allStatus")
