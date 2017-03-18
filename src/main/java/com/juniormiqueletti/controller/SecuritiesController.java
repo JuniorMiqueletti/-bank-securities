@@ -68,6 +68,15 @@ public class SecuritiesController {
 		
 	}
 	
+	@RequestMapping(value ="{codigo}", method = RequestMethod.DELETE)
+	public String delete(@PathVariable("codigo") Long codigo, RedirectAttributes attributes){
+		securitiesRespository.delete(codigo);
+		
+		attributes.addFlashAttribute("message","Successfully Deleted!!!");
+		
+		return "redirect:/securities";
+	}
+	
 	@ModelAttribute(name = "allStatus")
 	public List<Status> status(){
 		return Arrays.asList(Status.values());

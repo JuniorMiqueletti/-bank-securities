@@ -11,8 +11,8 @@
 
 	    <form class="form-horizontal" method="post" action="/securities" th:object="${securities}">
 	    
-	    	<div layout:include="Message">    		
-	    	</div>
+	    	<div layout:include="MessageError"></div>
+	    	<div layout:include="Message"></div>
 	    
 	    	<div class="panel panel-default">
 	    		<div class="panel-heading">

@@ -9,6 +9,8 @@
 </head>
 
 	<section layout:fragment="content">
+	
+   	<div layout:include="Message"></div>
 
 	   <div class="panel panel-default">
 	   	<div class="panel-heading">
@@ -30,29 +32,38 @@
 	   				</tr>
 	   			</thead>
 	   			<tbody>
-            <tr th:each="sec : ${allSecurities}">
-              <td class="text-center" th:text="${sec.codigo}">1</td>
-              <td th:text="${sec.description}"></td>
-              <td class="text-center" th:text="${{sec.dueDate}}"></td>
-              <td class="text-right" th:text="|$ ${{sec.value}}|"></td>
-              <td class="text-center">
-                <span class="label" th:text="${sec.status.description}"
-                	   							  th:classappend="${sec.pending ? 'label-danger' : 'label-success'}">
-                </span>
-              </td>
-              <td class="text-center">
-              	<a class="btn bnt-link btn-xs" th:href="@{/securities/{codigo}(codigo=${sec.codigo})}">
-              		<span class="glyphicon glyphicon-pencil"></span>
-              	</a>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="6" th:if="${#lists.isEmpty(allSecurities)}">No data found!</td>
-            </tr>
+		            <tr th:each="sec : ${allSecurities}">
+		              <td class="text-center" th:text="${sec.codigo}">1</td>
+		              <td th:text="${sec.description}"></td>
+		              <td class="text-center" th:text="${{sec.dueDate}}"></td>
+		              <td class="text-right" th:text="|$ ${{sec.value}}|"></td>
+		              <td class="text-center">
+		                <span class="label" th:text="${sec.status.description}"
+		                	   							  th:classappend="${sec.pending ? 'label-danger' : 'label-success'}">
+		                </span>
+		              </td>
+
+		              <td class="text-center">
+		              	<a class="btn bnt-link btn-xs" th:href="@{/securities/{codigo}(codigo=${sec.codigo})}">
+		              		<span class="glyphicon glyphicon-pencil"></span>
+		              	</a>
+		              	<a class="btn bnt-link btn-xs" data-toggle="modal"
+		              		data-target="#dailogExclusionConfirmationModal" 
+		              		th:attr="data-codigo=${sec.codigo}, data-description=${sec.description}">
+		              		<span class="glyphicon glyphicon-remove"></span>
+		              	</a>
+		              </td>
+
+		            </tr>
+		            <tr>
+		              <td colspan="6" th:if="${#lists.isEmpty(allSecurities)}">No data found!</td>
+		            </tr>
 	   			</tbody>
 	   		</table>
 	   	</div>
-		</div>
+	</div>
+	
+	<div layout:include="DailogExclusionConfirmation"></div>
 
 	</section>
 
