@@ -16,7 +16,7 @@ public class SecuritiesApplication {
 	
 	@Bean
 	public FixedLocaleResolver localeResolver(){
-		return new FixedLocaleResolver(new Locale("pt","BR"));
+		return new FixedLocaleResolver(new Locale("EN", Locale.US.toString()));
 	}
 	
 }
