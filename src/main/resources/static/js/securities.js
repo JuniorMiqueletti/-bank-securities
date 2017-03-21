@@ -14,3 +14,6 @@ $('#dailogExclusionConfirmationModal').on('show.bs.modal', function(event) {
 	
 	modal.find('.modal-body span').html('Do you right in Delete the <strong>' + secDescription + '</strong>?');
 });
+
+$('#sandbox-container input').datepicker({
+});
