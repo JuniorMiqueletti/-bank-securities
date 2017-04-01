@@ -17,3 +17,7 @@ $('#dailogExclusionConfirmationModal').on('show.bs.modal', function(event) {
 
 $('#sandbox-container input').datepicker({
 });
+
+$(function() {
+    $('.js-currency').maskMoney({decimal: ',', thousands: '.', allowZero: true});
+});
