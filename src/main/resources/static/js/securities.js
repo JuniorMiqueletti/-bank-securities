@@ -19,5 +19,5 @@ $('#sandbox-container input').datepicker({
 });
 
 $(function() {
-    $('.js-currency').maskMoney({decimal: ',', thousands: '.', allowZero: true});
+    $('.js-currency').maskMoney({decimal: '.', thousands: ',', allowZero: true});
 });
