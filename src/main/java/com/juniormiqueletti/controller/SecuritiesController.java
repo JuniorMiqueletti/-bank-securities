@@ -4,6 +4,7 @@ package com.juniormiqueletti.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import com.juniormiqueletti.service.SecuritiesRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -25,8 +26,12 @@ import com.juniormiqueletti.repository.SecuritiesRepository;
 public class SecuritiesController {
 
 	private static final String SECURITIES_REGISTER = "SecuritiesRegister";
+
 	@Autowired
-	private SecuritiesRepository securitiesRespository;
+	private SecuritiesRepository repository;
+
+	@Autowired
+	private SecuritiesRegisterService service;
 	
 	@RequestMapping("/new")
 	public ModelAndView newRegister(){
@@ -42,20 +47,20 @@ public class SecuritiesController {
 			return SECURITIES_REGISTER;
 		}
 		try {
-			securitiesRespository.save(securities);
+			service.save(securities);
 
 			attributes.addFlashAttribute("message", "Successfully saved!!!");
 
 			return "redirect:/securities/new";
-		}catch (DataIntegrityViolationException e){
-			errors.reject("dueDate",null,"Invalid Date format!");
+		}catch (IllegalArgumentException e){
+			errors.reject("dueDate",null, e.getMessage());
 			return SECURITIES_REGISTER;
 		}
 	}
 	
 	@RequestMapping
 	public ModelAndView search(){
-		List<Securities> allSecurities = securitiesRespository.findAll();
+		List<Securities> allSecurities = repository.findAll();
 		
 		ModelAndView modelAndView = new ModelAndView("SecuritiesSearch");
 		modelAndView.addObject("allSecurities", allSecurities);
@@ -75,7 +80,7 @@ public class SecuritiesController {
 	
 	@RequestMapping(value ="{codigo}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable("codigo") Long codigo, RedirectAttributes attributes){
-		securitiesRespository.delete(codigo);
+		service.delete(codigo);
 		
 		attributes.addFlashAttribute("message","Successfully Deleted!!!");
 		
