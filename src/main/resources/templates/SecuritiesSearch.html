@@ -37,21 +37,27 @@
 		              <td th:text="${sec.description}"></td>
 		              <td class="text-center" th:text="${{sec.dueDate}}"></td>
 		              <td class="text-right" th:text="|$ ${{sec.value}}|"></td>
-		              <td class="text-center">
+		              <td class="text-center" th:attr="data-role=${sec.codigo}">
 		                <span class="label" th:text="${sec.status.description}"
-		                	   							  th:classappend="${sec.pending ? 'label-danger' : 'label-success'}">
+							  th:classappend="${sec.pending ? 'label-danger' : 'label-success'}">
 		                </span>
 		              </td>
 
 		              <td class="text-center">
-		              	<a class="btn bnt-link btn-xs" th:href="@{/securities/{codigo}(codigo=${sec.codigo})}">
+		              	<a class="btn bnt-link btn-xs" th:href="@{/securities/{codigo}(codigo=${sec.codigo})}"
+						   title="Edit" rel="tooltip" data-placement="top">
 		              		<span class="glyphicon glyphicon-pencil"></span>
 		              	</a>
-		              	<a class="btn bnt-link btn-xs" data-toggle="modal"
+		              	<a class="btn bnt-link btn-xs" data-toggle="modal" title="Delete" rel="tooltip" data-placement="top"
 		              		data-target="#dailogExclusionConfirmationModal" 
 		              		th:attr="data-codigo=${sec.codigo}, data-description=${sec.description}">
 		              		<span class="glyphicon glyphicon-remove"></span>
 		              	</a>
+					  <a class="btn bnt-link btn-xs js-update-status" title="Receive" rel="tooltip" data-placement="top"
+						    th:attr="data-codigo=${sec.codigo}"
+					  		th:if="${sec.pending}" th:href="@{/securities/{codigo}/receive(codigo=${sec.codigo})}">
+						  <span class="glyphicon glyphicon-check"></span>
+					  </a>
 		              </td>
 
 		            </tr>

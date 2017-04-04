@@ -1,6 +1,7 @@
 package com.juniormiqueletti.service;
 
 import com.juniormiqueletti.model.Securities;
+import com.juniormiqueletti.model.Status;
 import com.juniormiqueletti.repository.SecuritiesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -25,5 +26,14 @@ public class SecuritiesRegisterService {
 
     public void delete(Long codigo){
         securitiesRespository.delete(codigo);
+    }
+
+    public String receive(Long codigo) {
+        Securities securities = securitiesRespository.findOne(codigo);
+        securities.setStatus(Status.RECEIVED);
+
+        securitiesRespository.save(securities);
+
+        return Status.RECEIVED.getDescription();
     }
 }

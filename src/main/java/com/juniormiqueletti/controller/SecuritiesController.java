@@ -10,10 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -91,5 +88,11 @@ public class SecuritiesController {
 	public List<Status> status(){
 		return Arrays.asList(Status.values());
 	}
-	
+
+	@RequestMapping(value ="/{codigo}/receive", method = RequestMethod.PUT)
+	public @ResponseBody String receive(@PathVariable Long codigo){
+
+		return service.receive(codigo);
+	}
+
 }
