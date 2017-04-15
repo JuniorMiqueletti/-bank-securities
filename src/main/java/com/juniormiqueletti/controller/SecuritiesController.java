@@ -4,9 +4,9 @@ package com.juniormiqueletti.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import com.juniormiqueletti.repository.filter.SecuritiesFilter;
 import com.juniormiqueletti.service.SecuritiesRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -56,9 +56,10 @@ public class SecuritiesController {
 	}
 	
 	@RequestMapping
-	public ModelAndView search(){
-		List<Securities> allSecurities = repository.findAll();
-		
+	public ModelAndView search(@ModelAttribute("filter") SecuritiesFilter filter){
+
+		List<Securities> allSecurities = service.filter(filter);
+
 		ModelAndView modelAndView = new ModelAndView("SecuritiesSearch");
 		modelAndView.addObject("allSecurities", allSecurities);
 		

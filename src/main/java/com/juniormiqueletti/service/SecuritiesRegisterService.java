@@ -3,9 +3,12 @@ package com.juniormiqueletti.service;
 import com.juniormiqueletti.model.Securities;
 import com.juniormiqueletti.model.Status;
 import com.juniormiqueletti.repository.SecuritiesRepository;
+import com.juniormiqueletti.repository.filter.SecuritiesFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by junio on 01/04/2017.
@@ -35,5 +38,11 @@ public class SecuritiesRegisterService {
         securitiesRespository.save(securities);
 
         return Status.RECEIVED.getDescription();
+    }
+
+    public List<Securities> filter(SecuritiesFilter filter){
+        String description = filter.getDescription() == null ? "%" : filter.getDescription();
+        return securitiesRespository.findByDescriptionContaining(description);
+
     }
 }
