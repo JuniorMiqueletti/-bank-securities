@@ -4,6 +4,8 @@
 
 ### What's this ###
 
+Bank securities CRUD using Springboot + thymeleaf example
+
 * TODO
 
 ### How to access ###
